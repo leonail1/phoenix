@@ -8,6 +8,8 @@ FIO_SRC_DIR ?= ${ROOT_DIR}/third-party/fio
 CUDA_HOME ?= /usr/local/cuda
 CUDA_LIB_DIR := ${CUDA_HOME}/lib64
 CUDA_INC_DIR := ${CUDA_HOME}/include
+CUDA_TARGET_LIB_DIR := ${CUDA_HOME}/targets/x86_64-linux/lib
+CUDA_TARGET_INC_DIR := ${CUDA_HOME}/targets/x86_64-linux/include
 
 PLUGIN_NAME = phoenix_fio
 SO_NAME = ${PLUGIN_NAME}.so
@@ -15,8 +17,8 @@ SRC = ${PLUGIN_NAME}.cpp
 OBJ = ${PLUGIN_NAME}.o
 
 CXX = g++
-CXXFLAGS = -fPIC -fpermissive -O3 -D_GNU_SOURCE -shared -rdynamic -I${PHOENIX_INCLUDE_DIR} -I${FIO_SRC_DIR} -I${CUDA_INC_DIR} -include ${ROOT_DIR}/third-party/fio/config-host.h
-LDFLAGS = -L${PHOENIX_LIB_DIR} -lphoenix -Wl,-rpath=${PHOENIX_LIB_DIR} -L${CUDA_LIB_DIR} -lcudart -luring
+CXXFLAGS = -fPIC -fpermissive -O3 -D_GNU_SOURCE -shared -rdynamic -I${PHOENIX_INCLUDE_DIR} -I${FIO_SRC_DIR} -I${CUDA_INC_DIR} -I${CUDA_TARGET_INC_DIR} -include ${ROOT_DIR}/third-party/fio/config-host.h
+LDFLAGS = -L${PHOENIX_LIB_DIR} -lphoenix -Wl,-rpath=${PHOENIX_LIB_DIR} -L${CUDA_LIB_DIR} -L${CUDA_TARGET_LIB_DIR} -Wl,-rpath=${CUDA_TARGET_LIB_DIR} -lcudart -lcufile -luring
 
 .PHONY: all clean
 

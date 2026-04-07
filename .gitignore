@@ -1,8 +1,11 @@
 .cache/
+cufile.log
+phxfs-test.bin
 */cufile.log
 */*/cufile.log
 tmp/*
 */__pycache__/*
+*.pyc
 */compile_commands.json
 scripts/logs/*
 scripts/results/*
@@ -13,3 +16,6 @@ sc25/result*
 sc25/logs/*
 build/
 *.so
+experiments/fio/results/
+experiments/fio/logs/
+experiments/fio/__pycache__/

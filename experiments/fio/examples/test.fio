@@ -1,5 +1,5 @@
 [global]
-ioengine=external:./phoenix_fio.so
+ioengine=external:benchmarks/fio/phoenix_fio.so
 bs=4k
 iodepth=16
 iodepth_batch_submit=16
